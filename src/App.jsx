@@ -47,12 +47,26 @@ function App() {
         (x) => x.id == mapping.data[i][0]
       );
 
+      // If table found
       if (foundTable > -1) {
         foundField = yamlInputParsed.records[foundTable].attributes.findIndex(
           (x) => x.id == mapping.data[i][1]
         );
       }
 
+      // If table found, but no field defined
+      if (foundTable > -1 && foundField == -1) {
+        yamlOutputParsed.records[foundTable].attributes.push({
+          id: mapping.data[i][1],
+          displayName: mapping.data[i][2],
+          customAttributes: {},
+          pql: '"' + mapping.data[i][0] + '"."' + mapping.data[i][1] + '"',
+          //type: "ATTRIBUTE",
+        });
+        console.log("this ran");
+      }
+
+      // If table found, and field defined
       if (foundTable > -1 && foundField > -1) {
         yamlOutputParsed.records[foundTable].attributes[
           foundField
