@@ -4,6 +4,14 @@ import "./App.css";
 import { parse, stringify } from "yaml";
 import YAML from "yaml";
 import { useCSVReader } from "react-papaparse";
+import { CSVLink } from "react-csv";
+
+const csvData = [
+  ["TABLE_NAME", "FIELD_NAME", "DESCRIPTIVE_NAME"],
+  ["DFKKINVDOC_H", "MANDT", "Client"],
+  ["DFKKINVDOC_H", "INVDOCNO", "Invoic. Doc."],
+  ["DFKKINVDOC_H", "APPLK", "ApplicationArea"],
+];
 
 // Vars
 var result = "";
@@ -85,7 +93,8 @@ function App() {
           <h2>1. Select your mapping file:</h2>
           <p>
             Your CSV should have three columns: Table Name, Field Name,
-            Descriptive Field Name
+            Descriptive Field Name. Here's a{" "}
+            <CSVLink data={csvData}>Template with some example data</CSVLink>
           </p>
           <CSVReader
             onUploadAccepted={(results) => {
