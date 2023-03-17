@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { parse, stringify } from "yaml";
@@ -26,6 +26,12 @@ function App() {
 
   const { CSVReader } = useCSVReader();
 
+  useEffect(() => {
+    if (mapping) {
+      processYAML();
+    }
+  }, [inputYAML]); // 👈️ add state variables you want to track
+
   const processYAML = () => {
     // Read YAML input - WORKING
     const yamlInputParsed = YAML.parse(inputYAML);
@@ -35,13 +41,17 @@ function App() {
 
     console.log(yamlInputParsed);
 
+    if (!yamlInputParsed.records) {
+      return "E";
+    }
+
     // Read Mapping CSV
     const reader = new FileReader();
     reader.onload = () => {
       document.getElementById("out").innerHTML = reader.result;
       result = reader.result;
     };
-    console.log(mapping.data);
+    //console.log(mapping.data);
 
     // Update the YAML
     for (const i in mapping.data) {
@@ -137,17 +147,19 @@ function App() {
             <form>
               <textarea
                 id="yaml_input_field"
-                style={{ width: "95%", height: "40vh" }}
+                style={{ width: "100%", height: "30vh" }}
                 onChange={(e) => setInputYAML(e.target.value)}
               ></textarea>
             </form>
           </div>
+          <div></div>
           <div className="col">
+            {/* <button onClick={processYAML}>Convert .YAML</button> */}
             <h2>3. Output will appear here:</h2>
             <form>
               <textarea
                 id="yaml_output_field"
-                style={{ width: "95%", height: "40vh" }}
+                style={{ width: "100%", height: "30vh" }}
                 value={outputYAML}
                 readOnly
               ></textarea>
@@ -155,9 +167,6 @@ function App() {
           </div>
         </div>
 
-        <div>
-          <button onClick={processYAML}>Convert .YAML</button>
-        </div>
         <p>
           Issue? Reach out to{" "}
           <a href="https://www.linkedin.com/in/hamishleith/">Hamish</a>
