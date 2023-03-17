@@ -78,7 +78,7 @@ function App() {
       if (foundTable > -1 && foundField > -1) {
         yamlOutputParsed.records[foundTable].attributes[
           foundField
-        ].displayName = "_EDITED__" + mapping.data[i][2];
+        ].displayName = mapping.data[i][2];
       }
     }
     setOutputYAML(YAML.stringify(yamlOutputParsed));
