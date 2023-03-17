@@ -87,13 +87,21 @@ function App() {
   return (
     <div className="App">
       <div id="container">
-        <h1>Celonis Knowledge Model Data Mapper</h1>
+        <h1>Celonis Knowledge Model Field Mapper</h1>
 
         <div>
+          <h2>What this does:</h2>
+          <p>
+            For some reason, Knowledge Models in Celonis don't pull the field
+            mappings from the Data Model they reference. This tool allows you to
+            take your mapping export from Celonis, and updates your Knowledge
+            Model to have 'nice' field name mappings.
+          </p>
           <h2>1. Select your mapping file:</h2>
           <p>
-            Your CSV should have three columns: Table Name, Field Name,
-            Descriptive Field Name. Here's a{" "}
+            Export your Data Model mapping file from Celonis, and save the Field
+            Mapping sheet as a CSV with these three columns: Table Name, Field
+            Name, Descriptive Field Name. Here's a{" "}
             <CSVLink data={csvData}>Template with some example data</CSVLink>
           </p>
           <CSVReader
