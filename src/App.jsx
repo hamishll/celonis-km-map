@@ -116,7 +116,6 @@ function App() {
                     Browse file
                   </button>
                   <div>{acceptedFile && acceptedFile.name}</div>
-                  <button {...getRemoveFileProps()}>Remove</button>
                 </div>
                 <ProgressBar />
               </>
@@ -151,6 +150,10 @@ function App() {
         <div>
           <button onClick={processYAML}>Convert .YAML</button>
         </div>
+        <p>
+          Issue? Reach out to{" "}
+          <a href="https://www.linkedin.com/in/hamishleith/">Hamish</a>
+        </p>
       </div>
     </div>
   );
