@@ -71,7 +71,7 @@ function App() {
           pql: '"' + mapping.data[i][0] + '"."' + mapping.data[i][1] + '"',
           //type: "ATTRIBUTE",
         });
-        console.log("this ran");
+        //console.log("this ran");
       }
 
       // If table found, and field defined
