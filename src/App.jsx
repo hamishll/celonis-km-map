@@ -39,19 +39,11 @@ function App() {
     // Create a mutable copy of the YAML
     const yamlOutputParsed = yamlInputParsed;
 
-    console.log(yamlInputParsed);
+    //console.log(yamlInputParsed);
 
     if (!yamlInputParsed.records) {
       return "E";
     }
-
-    // Read Mapping CSV
-    const reader = new FileReader();
-    reader.onload = () => {
-      document.getElementById("out").innerHTML = reader.result;
-      result = reader.result;
-    };
-    //console.log(mapping.data);
 
     // Update the YAML
     for (const i in mapping.data) {
